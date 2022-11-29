@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+}
+
+a {
+  color: #087ed1;
+  text-decoration: none;
+}
+
+/* ================================== Nav ================================== */
+.nav {
+  display: flex;
+  border-bottom: 1px solid #e5e9ef;
+}
+.nav-left,
+.nav-right {
+  display: flex;
+  flex-grow: 1;
+}
+.nav-left {
+  justify-content: flex-start;
+}
+.nav-right {
+  justify-content: flex-end;
+}
+.nav-item {
+  padding: 14px;
+}
