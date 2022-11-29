@@ -1,6 +1,7 @@
 const nunjucks = require("nunjucks");
 const morgan = require("morgan");
 const express = require("express");
+const { sequelize } = require("./models")
 const app = express();
 
 nunjucks.configure('views', {
@@ -30,6 +31,13 @@ app.use((err, req, res, next) => {
 })
 
 const PORT = process.env.port || 3000;
-app.listen(PORT, () => {
-  console.log(`Application is up and running at http://localhost:${PORT}`);
+app.listen(PORT, async () => {
+  try {
+    await sequelize.authenticate();
+    console.log(`Application is up and running at http://localhost:${PORT}`);
+  } catch(err) {
+    console.log("Database connection failed.");
+    console.log(err);
+    process.exit(64);
+  }
 })
