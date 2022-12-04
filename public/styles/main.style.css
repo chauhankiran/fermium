@@ -45,6 +45,9 @@ label {
 .nav-item {
   padding: 14px;
 }
+.nav-item.active {
+  text-decoration: underline;
+}
 
 /* ================================== Grid ================================== */
 /* Partially copied from Bootstrap v4.x */

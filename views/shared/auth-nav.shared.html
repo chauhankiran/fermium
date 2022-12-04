@@ -1,0 +1,11 @@
+<nav class="nav">
+  <div class="nav-left">
+    <a href="/dashboard" class="nav-item">{{ globalAppName }}</a>
+    <a href="/dashboard" class="nav-item {{ 'active' if '/dashboard' in request.originalUrl }}">Dashboard</a>
+    <a href="/companies" class="nav-item {{ 'active' if '/companies' in request.originalUrl }}">Companies</a>
+  </div>
+  <div class="nav-right">
+    <a href="/settings" class="nav-item {{ 'active' if '/settings' in request.originalUrl }}">Settings</a>
+    <a href="/logout" class="nav-item {{ 'active' if '/logout' in request.originalUrl }}">Logout</a>
+  </div>
+</nav>

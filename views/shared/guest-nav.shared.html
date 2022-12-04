@@ -3,7 +3,7 @@
     <a href="/" class="nav-item">{{ globalAppName }}</a>
   </div>
   <div class="nav-right">
-    <a href="/login" class="nav-item">Login</a>
-    <a href="/register" class="nav-item">Register</a>
+    <a href="/login" class="nav-item {{ 'active' if '/login' in request.originalUrl }}">Login</a>
+    <a href="/register" class="nav-item {{ 'active' if '/register' in request.originalUrl }}">Register</a>
   </div>
 </nav>

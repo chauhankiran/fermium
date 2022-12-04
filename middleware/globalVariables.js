@@ -3,6 +3,7 @@
 // to save from future conflicts.
 const globalVariables = (req, res, next) => {
   res.locals = {
+    request: req,
     globalAppName: "Fermium"
   };
   next();

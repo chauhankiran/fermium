@@ -1,6 +1,7 @@
 require("dotenv").config();
 const nunjucks = require("nunjucks");
 const morgan = require("morgan");
+const helmet = require("helmet");
 const cookie = require("cookie-parser");
 const session = require("express-session");
 const SQLiteStore = require('connect-sqlite3')(session);
@@ -17,6 +18,7 @@ nunjucks.configure('views', {
   express: app
 });
 
+app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
