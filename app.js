@@ -26,7 +26,7 @@ app.use(express.static("public"));
 
 app.use(cookie(process.env.COOKIE_SECRET))
 app.use(session({
-  cookie: { maxAge: 60000 },
+  cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
   saveUninitialized: true,
   resave: 'true',
   secret: process.env.SESSION_SECRET,

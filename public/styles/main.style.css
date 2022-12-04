@@ -224,6 +224,19 @@ label {
   padding: 6px 8px;
 }
 
+.btn-link {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+
+  color: #087ed1;
+  text-decoration: none;
+  cursor: pointer;
+
+  border: none;
+  background: none;
+}
+
 /* ================================== Alert ================================== */
 .alert {
   display: flex;

@@ -49,7 +49,7 @@ authController.login = async (req, res, next) => {
       }
 
       req.flash("info", "User logged in successfully");
-      res.redirect("/");
+      res.redirect("/dashboard");
       return;
     });
   })(req, res, next);
@@ -120,6 +120,14 @@ authController.register = async (req, res, next) => {
       next(err);  
     }
   } 
+}
+
+authController.logout = (req, res, next) => {
+  req.logout((err) => {
+    next(err);
+    return;
+  })
+  res.redirect("/");
 }
 
 module.exports = authController;
