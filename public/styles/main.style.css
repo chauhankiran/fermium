@@ -221,6 +221,30 @@ label {
   padding: 6px 8px;
 }
 
+/* ================================== Alert ================================== */
+.alert {
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.alert-message {
+  display: flex;
+  flex-grow: 1;
+  margin: 0;
+  padding: 6px 8px;
+}
+
+.alert-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  padding-right: 8px;
+}
+
 /* ================================== Utilities ================================== */
 /* These should be at the end */
 

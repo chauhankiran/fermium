@@ -6,6 +6,14 @@
     <div class="col-4"></div>
     <div class="col-4">
       <h1>Login</h1>
+
+      {% if messages.info %}
+        <div class="alert">
+          <p class="alert-message">{{ messages.info }}</p>
+          <button class="alert-close">x</button>
+        </div>
+      {% endif %}
+
       <form action="/login" method="post">
         <div class="form-group">
           <label for="email">Email</label>

@@ -1,5 +1,9 @@
+require("dotenv").config();
 const nunjucks = require("nunjucks");
 const morgan = require("morgan");
+const cookie = require("cookie-parser");
+const session = require("express-session");
+const flash = require("express-flash");
 const express = require("express");
 const { sequelize } = require("./models")
 const app = express();
@@ -13,6 +17,15 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+app.use(cookie(process.env.COOKIE_SECRET))
+app.use(session({
+  cookie: { maxAge: 60000 },
+  saveUninitialized: true,
+    resave: 'true',
+    secret: process.env.SESSION_SECRET
+}))
+app.use(flash());
 
 app.use(require("./middleware/globalVariables"))
 
