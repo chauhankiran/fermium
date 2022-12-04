@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+const passport = require("passport");
 const { User } = require("../models");
 
 const authController = {};
@@ -12,7 +13,46 @@ authController.showRegister = (req, res) => {
 };
 
 authController.login = async (req, res, next) => {
-  res.status(501).send("Not Implemented")
+  const { email, password } = req.body;
+
+  // Validations
+  if (!email) {
+    req.flash("alert", "Email is required.");
+    res.render("auth/login.view.html");
+    return;
+  }
+
+  if (!password) {
+    req.flash("alert", "Password is required.");
+    res.render("auth/login.view.html");
+    return;
+  }
+
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      req.flash("alert", "Problem while login.");
+      res.render("auth/login.view.html");
+      return;
+    }
+
+    if (!user) {
+      req.flash("alert", "Email or password is incorrect.");
+      res.render("auth/login.view.html");
+      return;
+    }
+
+    req.logIn(user, (err) => {
+      if (err) {
+        req.flash("alert", "Problem while login.");
+        res.render("auth/login.view.html");
+        return;
+      }
+
+      req.flash("info", "User logged in successfully");
+      res.redirect("/");
+      return;
+    });
+  })(req, res, next);
 }
 
 authController.register = async (req, res, next) => {
@@ -68,7 +108,7 @@ authController.register = async (req, res, next) => {
 
     // TODO: In future, we'll send email for account creation confirmation.
     req.flash("info", "Account is created. Please login.");
-    res.render("auth/login.view.html");
+    res.redirect("/login");
     return;
   } catch (err) {
     // TODO: Need improvements here?

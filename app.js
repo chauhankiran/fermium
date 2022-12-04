@@ -3,9 +3,13 @@ const nunjucks = require("nunjucks");
 const morgan = require("morgan");
 const cookie = require("cookie-parser");
 const session = require("express-session");
+const SQLiteStore = require('connect-sqlite3')(session);
 const flash = require("express-flash");
+const passport = require("passport");
+const sqlite3 = require("sqlite3");
 const express = require("express");
-const { sequelize } = require("./models")
+const { sequelize } = require("./models");
+require("./middleware/passport");
 const app = express();
 
 nunjucks.configure('views', {
@@ -22,10 +26,16 @@ app.use(cookie(process.env.COOKIE_SECRET))
 app.use(session({
   cookie: { maxAge: 60000 },
   saveUninitialized: true,
-    resave: 'true',
-    secret: process.env.SESSION_SECRET
+  resave: 'true',
+  secret: process.env.SESSION_SECRET,
+  store: new SQLiteStore({
+    table: "sessions",
+    db: "crm_dev.sqlite3"
+  }),
 }))
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(require("./middleware/globalVariables"))
 
