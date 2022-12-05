@@ -3,8 +3,35 @@
 
 <main class="container">
   <div class="row">
-    <div class="col-12 text-center">
-      <h1>Companies</h1>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-8">
+          <h1>Companies ({{ data.count }})</h1>
+        </div>
+        <div class="col-4 text-right">
+          <a href="/companies/add" class="btn">Add new company</a>
+        </div>
+      </div>
+      
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Website</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for company in data.companies %}
+            <tr>
+              <td>{{ company.id }}</td>
+              <td>{{ company.name }}</td>
+              <td>{{ company.website }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
 </main>

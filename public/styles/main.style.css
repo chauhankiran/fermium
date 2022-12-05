@@ -261,6 +261,19 @@ label {
   padding-right: 8px;
 }
 
+/* ================================== Table ================================== */
+.table {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  border-collapse: collapse;
+}
+.table th,
+.table td {
+  text-align: left;
+  padding: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+}
+
 /* ================================== Utilities ================================== */
 /* These should be at the end */
 
@@ -272,4 +285,14 @@ label {
 }
 .text-right {
   text-align: right;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
 }
