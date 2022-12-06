@@ -2,6 +2,38 @@
 
 A simple CRM system in Node
 
+### Getting Started
+
+Running the application locally is quite simple with following steps.
+
+1. Clone the repository.
+  ```bash
+  $ git clone git@github.com:chauhankiran/fermium.git
+  ```
+2. Go inside the cloned repository or folder.
+  ```bash
+  $ cd fermium
+  ```
+3. Install the dependencies.
+  ```bash
+  $ npm i
+  ```
+4. Rename the `.env.example` file to `.env`.
+  ```bash
+  $ mv .env.example .env
+  ```
+5. Fill the appropriate values in `.env` files. For `COOKIE_SECRET` and `SESSION_SECRET`, add random string value with at least 64 characters long. Add same random string to both `COOKIE_SECRET` and `SESSION_SECRET`.
+6. Run the database migration.
+  ```bash
+  $ npx sequelize db:migrate
+  ```
+7. Start the application.
+  ```bash
+  $ npm start
+  ```
+8. If everything goes fine, you should have the running application at http://localhost:3000. Go ahead and create an account by visiting the register page and explore the application! Happy hacking!
+
+
 ### Folder Structure
 
 The folder structure is intentionally simple and usual for collaboration.
