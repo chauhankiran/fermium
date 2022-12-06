@@ -5,7 +5,25 @@
 <main class="container">
   <div class="row">
     <div class="col-12">
-      <h1>Show this company</h1>
+      <div class="row">
+        <div class="col-8">
+          <h1>{{ data.company.name }}</h1>
+        </div>
+        <div class="col-4 back">
+          <a href="/companies" class="btn">Back</a>
+        </div>
+      </div>
+      
+      <p>
+        <a href="{{ data.company.website }}" target="_blank">
+          {{ data.company.website }}
+        </a>
+      </p>
+
+      <hr>
+
+      <a href="/companies/{{ data.company.id }}/edit" class="btn">Edit</a>
+      <a href="/companies" class="cancel">Cancel</a>
     </div>
   </div>
 </main>

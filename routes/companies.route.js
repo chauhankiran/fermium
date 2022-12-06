@@ -9,7 +9,7 @@ router.get("/add", auth, controllers.companiesController.add);
 router.get("/:id", auth, controllers.companiesController.show);
 router.get("/:id/edit", auth, controllers.companiesController.edit);
 router.post("/", auth, controllers.companiesController.create);
-router.put("/:id", auth, controllers.companiesController.update);
-router.delete("/:id", auth, controllers.companiesController.destroy);
+router.post("/:id", auth, controllers.companiesController.update);
+router.post("/:id/delete", auth, controllers.companiesController.destroy);
 
 module.exports = router;

@@ -8,11 +8,10 @@
         <div class="col-8">
           <h1>Companies ({{ data.count }})</h1>
         </div>
-        <div class="col-4 text-right">
+        <div class="col-4 add-entity">
           <a href="/companies/add" class="btn">Add new company</a>
         </div>
       </div>
-      
 
       <table class="table">
         <thead>
@@ -20,14 +19,29 @@
             <th>Id</th>
             <th>Name</th>
             <th>Website</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {% for company in data.companies %}
             <tr>
-              <td>{{ company.id }}</td>
-              <td>{{ company.name }}</td>
+              <td>
+                <a href="/companies/{{ company.id }}">
+                  {{ company.id }}
+                </a>
+              </td>
+              <td>
+                <a href="/companies/{{ company.id }}">
+                  {{ company.name }}
+                </a>
+              </td>
               <td>{{ company.website }}</td>
+              <td class="text-center"><a href="/companies/{{ company.id }}/edit">edit</a> | 
+                <!-- TODO: Add confirmation dialog before deleting. -->
+                <form method="post" action="/companies/{{ company.id }}/delete" class="inline">
+                  <button class="btn-link">delete</button>
+                </form>
+               </td>
             </tr>
           {% endfor %}
         </tbody>

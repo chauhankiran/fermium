@@ -6,6 +6,33 @@
   <div class="row">
     <div class="col-12">
       <h1>Edit this company</h1>
+
+      <form action="/companies/{{ data.company.id }}" method="post">
+        <!-- Hack: design hack to look little good. -->
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" class="form-control" placeholder="Acme, Inc." value="{{ data.company.name }}">
+            </div>
+          </div>
+        </div>
+
+        <!-- Hack: design hack to look little good. -->
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="website">Website</label>
+              <input type="text" name="website" id="website" class="form-control" placeholder="https://acme.com" value="{{ data.company.website }}">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn">Update</button>
+          <a href="/companies/{{ data.company.id }}" class="cancel">Cancel</a>
+        </div>
+      </form>
     </div>
   </div>
 </main>

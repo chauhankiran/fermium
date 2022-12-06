@@ -21,6 +21,14 @@ a {
   text-decoration: none;
 }
 
+hr {
+  margin: 1rem 0;
+  color: inherit;
+  border: 0;
+  border-top: 1px solid;
+  opacity: 0.25;
+}
+
 label {
   cursor: pointer;
 }
@@ -43,7 +51,7 @@ label {
   justify-content: flex-end;
 }
 .nav-item {
-  padding: 14px;
+  padding: 14px !important;
 }
 .nav-item.active {
   text-decoration: underline;
@@ -220,6 +228,7 @@ label {
   border: 1px solid rgba(0, 0, 0, 0.7);
   color: rgba(0, 0, 0, 0.9);
   cursor: pointer;
+  display: inline-block;
 
   padding: 6px 8px;
 }
@@ -235,6 +244,8 @@ label {
 
   border: none;
   background: none;
+
+  padding: 0;
 }
 
 /* ================================== Alert ================================== */
@@ -270,29 +281,34 @@ label {
 .table th,
 .table td {
   text-align: left;
-  padding: 4px;
+  padding: 6px;
   border: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+/* ================================== Application specific ================================== */
+.back,
+.add-entity {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.cancel {
+  margin-left: 6px;
 }
 
 /* ================================== Utilities ================================== */
 /* These should be at the end */
 
 .text-left {
-  text-align: left;
+  text-align: left !important;
 }
 .text-center {
-  text-align: center;
+  text-align: center !important;
 }
 .text-right {
-  text-align: right;
+  text-align: right !important;
 }
 
-.justify-start {
-  justify-content: flex-start;
-}
-.justify-center {
-  justify-content: center;
-}
-.justify-end {
-  justify-content: flex-end;
+.inline {
+  display: inline !important;
 }
