@@ -33,6 +33,13 @@ Running the application locally is quite simple with following steps.
   ```
 8. If everything goes fine, you should have the running application at http://localhost:3000. Go ahead and create an account by visiting the register page and explore the application! Happy hacking!
 
+### Tech. Stack
+
+The tech. stack for the Fermium is boring. 
+
+On the back-end side, we're using Node with JavaScript and SQLite3 as development database. [Sequelize](https://sequelize.org/) ORM has been used to work with database. On the front-end side, we're NOT using any front-end framework than [Nunjucks](https://mozilla.github.io/nunjucks/) template engine with jQuery and custom-made styles.
+
+Apart from these, we're using few popular packages such as [Express](http://expressjs.com/) as base framework, [dotenv](https://www.npmjs.com/package/dotenv) to manage the secrets, [Passport](https://www.passportjs.org) and passport local for the authentication, and so on.
 
 ### Folder Structure
 
