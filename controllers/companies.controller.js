@@ -1,8 +1,32 @@
-const { Company } = require("../models");
+const { Company, CompanySource, CompanyStage } = require("../models");
 
 // Get company service
 const getCompanyService = (id) => {
-  return Company.findOne({ where: { id }});
+  return Company.findOne({ 
+    where: { id },
+    include: [
+      {
+        model: CompanySource,
+        as: "companySource",
+        required: false
+      },
+      {
+        model: CompanyStage,
+        as: "companyStage",
+        required: false
+      }
+    ]
+  });
+}
+
+// Get company sources service
+const getCompanySourcesService = () => {
+  return CompanySource.findAll();
+}
+
+// Get company stages services
+const getCompanyStagesService = () => {
+  return CompanyStage.findAll();
 }
 
 const companiesController = {};
@@ -24,8 +48,12 @@ companiesController.index = async (req, res, next) => {
 };
 
 // Add company page.
-companiesController.add = (req, res) => {
-  res.render("companies/add.view.html", { data: { title: "Add new company" }});
+companiesController.add = async (req, res, next) => {
+  const sources = await getCompanySourcesService();
+  const stages = await getCompanyStagesService();
+
+  const data = { title: "Add new company", sources, stages };
+  res.render("companies/add.view.html", { data });
 }
 
 // Edit company page.
@@ -34,8 +62,10 @@ companiesController.edit = async (req, res, next) => {
 
   try {
     const company = await getCompanyService(id);
+    const sources = await getCompanySourcesService();
+    const stages = await getCompanyStagesService();
 
-    const data = { title: "Edit this company", company }
+    const data = { title: "Edit this company", company, sources, stages }
     res.render("companies/edit.view.html", { data });
   } catch (err) {
     next(err);
@@ -58,13 +88,15 @@ companiesController.show = async (req, res, next) => {
 
 // Create a new company.
 companiesController.create = async (req, res, next) => {
-  const { name, website } = req.body;
+  const { name, website, sourceId, stageId } = req.body;
 
   try {
     const company = await Company.create({
       name,
       website,
       active: 1,
+      sourceId,
+      stageId,
       createdBy: req.user.id
     }, {silent: true});
 
@@ -78,13 +110,15 @@ companiesController.create = async (req, res, next) => {
 // Update an existing company.
 companiesController.update = async (req, res, next) => {
   const id = req.params.id;
-  const { name, website } = req.body;
+  const { name, website, sourceId, stageId } = req.body;
 
   try {
     const company = await getCompanyService(id);
 
     company.name = name;
     company.website = website;
+    company.sourceId = sourceId;
+    company.stageId = stageId;
     company.updatedBy = req.user.id;
 
     await company.save();

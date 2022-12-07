@@ -28,6 +28,34 @@
           </div>
         </div>
 
+        <!-- Hack: design hack to look little good. -->
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="sourceId">Source</label>
+              <select name="sourceId" id="sourceId" class="form-control">
+                {% for source in data.sources %}
+                  <option value="{{ source.id }}">{{ source.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hack: design hack to look little good. -->
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="stageId">Stage</label>
+              <select name="stageId" id="stageId" class="form-control">
+                {% for stage in data.stages %}
+                  <option value="{{ stage.id }}">{{ stage.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+
         <div class="form-group">
           <button type="submit" class="btn">Create</button>
           <a href="/companies" class="cancel">Cancel</a>

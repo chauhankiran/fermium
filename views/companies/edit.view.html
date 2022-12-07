@@ -28,6 +28,42 @@
           </div>
         </div>
 
+        <!-- Hack: design hack to look little good. -->
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="sourceId">Source</label>
+              <select name="sourceId" id="sourceId" class="form-control">
+                {% for source in data.sources %}
+                  {% if source.id === data.company.sourceId %}
+                    <option value="{{ source.id }}" selected>{{ source.name }}</option>
+                  {% else %}
+                    <option value="{{ source.id }}">{{ source.name }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hack: design hack to look little good. -->
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="stageId">Stage</label>
+              <select name="stageId" id="stageId" class="form-control">
+                {% for stage in data.stages %}
+                  {% if stage.id === data.company.stageId %}
+                    <option value="{{ stage.id }}" selected>{{ stage.name }}</option>
+                  {% else %}
+                    <option value="{{ stage.id }}">{{ stage.name }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+
         <div class="form-group">
           <button type="submit" class="btn">Update</button>
           <a href="/companies/{{ data.company.id }}" class="cancel">Cancel</a>

@@ -14,10 +14,19 @@
         </div>
       </div>
       
+      <!-- TODO: We need to update the UI of the show page. -->
       <p>
         <a href="{{ data.company.website }}" target="_blank">
           {{ data.company.website }}
         </a>
+      </p>
+
+      <p>
+        <span>Stage</span>: <span>{{ data.company.companyStage.name }}</span>
+      </p>
+
+      <p>
+        <span>Source</span>: <span>{{ data.company.companySource.name }}</span>
       </p>
 
       <hr>
