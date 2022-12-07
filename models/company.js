@@ -4,19 +4,23 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Company extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      Company.belongsTo(models.CompanyStage, {
+        as: "companyStage",
+        foreignKey: "stageId",
+      })
+      Company.belongsTo(models.CompanySource, {
+        as: "companySource",
+        foreignKey: "sourceId",
+      })
     }
   }
   Company.init({
     name: DataTypes.STRING,
     website: DataTypes.STRING,
     active: DataTypes.BOOLEAN,
+    stageId: DataTypes.INTEGER,
+    sourceId: DataTypes.INTEGER,
     createdBy: DataTypes.INTEGER,
     updatedBy: DataTypes.INTEGER
   }, {
