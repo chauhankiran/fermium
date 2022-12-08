@@ -19,6 +19,10 @@
             <th>Id</th>
             <th>Name</th>
             <th>Website</th>
+            <th>Source</th>
+            <th>Stage</th>
+            <th>Created On</th>
+            <th>Updated On</th>
             <th></th>
           </tr>
         </thead>
@@ -36,6 +40,10 @@
                 </a>
               </td>
               <td>{{ company.website }}</td>
+              <td>{{ company.companySource.name }}</td>
+              <td>{{ company.companyStage.name }}</td>
+              <td>{{ company.createdAt }}</td>
+              <td>{{ company.updatedAt }}</td>
               <td class="text-center"><a href="/companies/{{ company.id }}/edit">edit</a> | 
                 <!-- TODO: Add confirmation dialog before deleting. -->
                 <form method="post" action="/companies/{{ company.id }}/delete" class="inline">

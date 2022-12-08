@@ -54,6 +54,7 @@ The folder structure is intentionally simple and usual for collaboration.
 | models      | "M" of MVC. Created by Sequelize migration script with minor alteration. |
 | public      | A folder the holds public assets such as `.css`, `.js` files. |
 | routes      | Routes files of the application. One file per module. |
+| utils       | A place where application wide helper or utilities functions are defined. |
 | views       | "V" of MVC. Nunjucks templates in folder per modules. |
 
 ### License

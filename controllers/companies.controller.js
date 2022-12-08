@@ -8,12 +8,14 @@ const getCompanyService = (id) => {
       {
         model: CompanySource,
         as: "companySource",
-        required: false
+        required: false,
+        attributes: ["id", "name"]
       },
       {
         model: CompanyStage,
         as: "companyStage",
-        required: false
+        required: false,
+        attributes: ["id", "name"]
       }
     ]
   });
@@ -35,6 +37,20 @@ const companiesController = {};
 companiesController.index = async (req, res, next) => {
   try {
     const companies = await Company.findAndCountAll({
+      include: [
+        {
+          model: CompanySource,
+          as: "companySource",
+          required: false,
+          attributes: ["id", "name"]
+        },
+        {
+          model: CompanyStage,
+          as: "companyStage",
+          required: false,
+          attributes: ["id", "name"]
+        }
+      ],
       order: [
         ['id', 'desc']
       ]

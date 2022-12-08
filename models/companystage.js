@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const formatDateBy = require("../utils/formatDateBy");
+
 module.exports = (sequelize, DataTypes) => {
   class CompanyStage extends Model {
     static associate(models) {
@@ -14,7 +16,19 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     active: DataTypes.BOOLEAN,
     createdBy: DataTypes.INTEGER,
-    updatedBy: DataTypes.INTEGER
+    updatedBy: DataTypes.INTEGER,
+    createdAt: {
+      type: DataTypes.DATE,
+      get() {
+        return formatDateBy(this.getDataValue("createdAt"));
+      },
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      get() {
+        return formatDateBy(this.getDataValue("updatedAt"));
+      },
+    },
   }, {
     sequelize,
     modelName: 'CompanyStage',

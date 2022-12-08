@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const formatDateBy = require("../utils/formatDateBy");
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -17,10 +19,27 @@ module.exports = (sequelize, DataTypes) => {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    createdAt: {
+      type: DataTypes.DATE,
+      get() {
+        return formatDateBy(this.getDataValue("createdAt"));
+      },
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      get() {
+        return formatDateBy(this.getDataValue("updatedAt"));
+      },
+    },
   }, {
     sequelize,
     modelName: 'User',
+    defaultScope: {
+      attributes: {
+        exclude: ["password"],
+      }
+    },
   });
   return User;
 };
