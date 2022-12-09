@@ -1,0 +1,30 @@
+{% include "shared/header.shared.html" %}
+{% include "shared/auth-nav.shared.html" %}
+
+
+<main class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>{{ data.title }}</h1>
+
+      <form action="/admin/fields/{{ data.pickup }}" method="post">
+        <!-- Hack: design hack to look little good. -->
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" class="form-control" placeholder="Field name" value="">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn">Create</button>
+          <a href="/admin/fields/{{ data.pickup }}" class="cancel">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+{% include "shared/footer.shared.html" %}

@@ -1,0 +1,40 @@
+{% include "shared/header.shared.html" %}
+{% include "shared/auth-nav.shared.html" %}
+
+<main class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Admin</h1>
+
+      <h3>Pickup Fields Management</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Module</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a href="/admin/fields/source">
+                Company - Source
+              </a>
+            </td>
+            <td>Manage the fields for the Company's Source pickup field.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="/admin/fields/stage">
+                Company - Stage
+              </a>
+            </td>
+            <td>Manage the fields for the Company's Stage pickup field.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+{% include "shared/footer.shared.html" %}

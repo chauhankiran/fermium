@@ -5,6 +5,7 @@
     <a href="/companies" class="nav-item {{ 'active' if '/companies' in request.originalUrl }}">Companies</a>
   </div>
   <div class="nav-right">
+    <a href="/admin" class="nav-item {{ 'active' if '/admin' in request.originalUrl }}">Admin</a>
     <a href="/settings" class="nav-item {{ 'active' if '/settings' in request.originalUrl }}">Settings</a>
     <form method="post" action="/logout">
       <button class="btn-link nav-item {{ 'active' if '/logout' in request.originalUrl }}">Logout</button>
