@@ -1,4 +1,4 @@
-const { CompanySource, CompanyStage, User } = require("../models");
+const { CompanySource, CompanyStage, User, Field } = require("../models");
 
 // Get company sources service
 const getCompanySourcesService = () => {
@@ -62,7 +62,7 @@ adminController.fieldsIndex = async (req, res, next) => {
     values = await getCompanyStagesService();
   }
 
-  res.render("admin/fields/index.view.html", { data: { title, pickup, values }});
+  res.render("admin/pickup/index.view.html", { data: { title, pickup, values }});
   return;
 }
 
@@ -78,7 +78,7 @@ adminController.fieldsAdd = async (req, res, next) => {
     title = "Add new field for Stage pickup"
   }
 
-  res.render("admin/fields/add.view.html", { data: { title, pickup }});
+  res.render("admin/pickup/add.view.html", { data: { title, pickup }});
   return;
 }
 
@@ -119,7 +119,7 @@ adminController.fieldsEdit = async (req, res, next) => {
       title = "Stage pickup values / " + value.name;
     }
 
-    res.render("admin/fields/edit.view.html", {data: { title, value, pickup }});
+    res.render("admin/pickup/edit.view.html", {data: { title, value, pickup }});
     return;
   } catch (err) {
     next(err);
@@ -179,6 +179,64 @@ adminController.fieldsDestroy = async (req, res, next) => {
     } else {
       next(err);  
     }
+  }
+}
+
+adminController.moduleFieldsIndex = async (req, res, next) => {  
+  const module = req.params.module;
+  let title = "";
+  let fields = ""
+
+  try {
+    // Check for one of the valid module.
+    if (module === "companies") {
+      title = "Companies fields"
+      fields = await Field.findAndCountAll()
+    }
+
+    res.render("admin/fields/index.view.html", { data: { title, module, fields: fields.rows, count: fields.count }})
+    return;
+  } catch (err) {
+    next(err)
+  }
+}
+
+adminController.moduleFieldsEdit = async (req, res, next) => {
+  const module = req.params.module;
+  const id = req.params.id;
+  let field = null;
+
+  try {
+    if (module === "companies") {
+      field = await Field.findOne({ where: { id }})
+      title = "Companies fields / " + field.displayName;
+    }
+
+    res.render("admin/fields/edit.view.html", {data: { title, field, module }});
+    return;
+  } catch (err) {
+    next(err);
+  }
+}
+
+adminController.moduleFieldsUpdate = async (req, res, next) => {
+  const module = req.params.module;
+  const id = req.params.id;
+  const displayName = req.body.displayName;
+  let field = null;
+
+  try {
+    if (module === "companies") {
+      field = await Field.findOne({ where: { id }})
+      field.displayName = displayName;
+      field.updatedBy = req.user.id;
+      await field.save();
+    }
+
+    res.redirect(`/admin/${module}/fields`);
+    return;
+  } catch (err) {
+    next(err);
   }
 }
 

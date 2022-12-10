@@ -7,20 +7,20 @@
     <div class="col-12">
       <h1>{{ data.title }}</h1>
 
-      <form action="/admin/{{ data.module }}/fields/{{ data.field.id }}" method="post">
+      <form action="/admin/fields/{{ data.pickup }}/{{ data.value.id }}" method="post">
         <!-- Hack: design hack to look little good. -->
         <div class="row">
           <div class="col-6">
             <div class="form-group">
-              <label for="displayName">Name</label>
-              <input type="text" name="displayName" id="displayName" class="form-control" placeholder="Display field name" value="{{ data.field.displayName }}">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" class="form-control" placeholder="Field name" value="{{ data.value.name }}">
             </div>
           </div>
         </div>
 
         <div class="form-group">
           <button type="submit" class="btn">Update</button>
-          <a href="/admin/{{ data.module }}/fields" class="cancel">Cancel</a>
+          <a href="/admin/fields/{{ data.pickup }}" class="cancel">Cancel</a>
         </div>
       </form>
     </div>
