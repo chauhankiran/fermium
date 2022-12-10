@@ -35,18 +35,10 @@
                 {{ request.session.companies_website }}
               </a>
             </th>
-            <th>
-              {{ request.session.companies_sourceId }}
-            </th>
-            <th>
-              {{ request.session.companies_stageId}}
-            </th>
-            <th>
-              {{ request.session.companies_createdBy}}
-            </th>
-            <th>
-              {{ request.session.companies_updatedBy }}
-            </th>
+            <th>{{ request.session.companies_sourceId }}</th>
+            <th>{{ request.session.companies_stageId}}</th>
+            <th>{{ request.session.companies_createdBy}}</th>
+            <th>{{ request.session.companies_updatedBy }}</th>
             <th>
               <a href="/companies/?sort=createdAt&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">
                 {{ request.session.companies_createdAt }}
@@ -76,8 +68,8 @@
               <td>{{ company.website }}</td>
               <td>{{ company.companySource.name }}</td>
               <td>{{ company.companyStage.name }}</td>
-              <td>{{ company.creator.firstName }} {{ company.creator.lastName }}</td>
-              <td>{{ company.updator.firstName }} {{ company.updator.lastName }}</td>
+              <td>{{ company.creator.fullName }}</td>
+              <td>{{ company.updator.fullName }}</td>
               <td>{{ company.createdAt }}</td>
               <td>{{ company.updatedAt }}</td>
               <td class="text-center"><a href="/companies/{{ company.id }}/edit">edit</a> | 

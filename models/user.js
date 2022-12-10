@@ -49,6 +49,12 @@ module.exports = (sequelize, DataTypes) => {
         return formatDateBy(this.getDataValue("updatedAt"));
       },
     },
+    fullName: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return `${this.firstName} ${this.lastName}`
+      }
+    }
   }, {
     sequelize,
     modelName: 'User',

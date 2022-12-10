@@ -22,11 +22,11 @@
       </p>
 
       <p>
-        <span>Stage</span>: <span>{{ data.company.companyStage.name }}</span>
+        <span>{{ request.session.companies_sourceId }}</span>: <span>{{ data.company.companySource.name }}</span>
       </p>
 
       <p>
-        <span>Source</span>: <span>{{ data.company.companySource.name }}</span>
+        <span>{{ request.session.companies_stageId }}</span>: <span>{{ data.company.companyStage.name }}</span>
       </p>
 
       <hr>

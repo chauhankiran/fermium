@@ -133,13 +133,15 @@ companiesController.index = async (req, res, next) => {
 // Download as csv file.
 companiesController.download = async (req, res, next) => {
   const fields = [
-    { label: "Id", value: "id" },
-    { label: "Name", value: "name" },
-    { label: "website", value: "website" },
-    { label: "Source", value: "companySource.name" },
-    { label: "Stage", value: "companyStage.name" },
-    { label: "Created by", value: (row, field) => row.creator?.firstName + " " + row.creator?.lastName },
-    { label: "Updated by", value: (row, field) => row.updator?.firstName + " " + row.updator?.lastName }
+    { label: req.session.companies_id, value: "id" },
+    { label: req.session.companies_name, value: "name" },
+    { label: req.session.companies_website, value: "website" },
+    { label: req.session.companies_sourceId, value: "companySource.name" },
+    { label: req.session.companies_stageId, value: "companyStage.name" },
+    { label: req.session.companies_createdBy, value: "creator.fullName" },
+    { label: req.session.companies_updatedBy, value: "updator.fullName" },
+    { label: req.session.companies_createdAt, value: "createdAt" },
+    { label: req.session.companies_updaedAt, value: "updatedAt" }
   ];
 
   try {

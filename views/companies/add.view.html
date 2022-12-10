@@ -12,7 +12,7 @@
         <div class="row">
           <div class="col-6">
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="name">{{ request.session.companies_name }}</label>
               <input type="text" name="name" id="name" class="form-control" placeholder="Acme, Inc.">
             </div>
           </div>
@@ -22,7 +22,7 @@
         <div class="row">
           <div class="col-6">
             <div class="form-group">
-              <label for="website">Website</label>
+              <label for="website">{{ request.session.companies_website }}</label>
               <input type="text" name="website" id="website" class="form-control" placeholder="https://acme.com">
             </div>
           </div>
@@ -32,7 +32,7 @@
         <div class="row">
           <div class="col-6">
             <div class="form-group">
-              <label for="sourceId">Source</label>
+              <label for="sourceId">{{ request.session.companies_sourceId }}</label>
               <select name="sourceId" id="sourceId" class="form-control">
                 {% for source in data.sources %}
                   <option value="{{ source.id }}">{{ source.name }}</option>
@@ -46,7 +46,7 @@
         <div class="row">
           <div class="col-6">
             <div class="form-group">
-              <label for="stageId">Stage</label>
+              <label for="stageId">{{ request.session.companies_stageId }}</label>
               <select name="stageId" id="stageId" class="form-control">
                 {% for stage in data.stages %}
                   <option value="{{ stage.id }}">{{ stage.name }}</option>
