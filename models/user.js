@@ -6,13 +6,30 @@ const formatDateBy = require("../utils/formatDateBy");
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      // company relation with user.
+      User.hasMany(models.Company, {
+        foreignKey: "createdBy",
+      });
+      User.hasMany(models.Company, {
+        foreignKey: "updatedBy",
+      });
+
+      // source pickup relation with user.
+      User.hasMany(models.CompanySource, {
+        foreignKey: "createdBy",
+      });
+      User.hasMany(models.CompanySource, {
+        foreignKey: "updatedBy",
+      });
+
+      // stage pickup relation with user.
+      User.hasMany(models.CompanyStage, {
+        foreignKey: "createdBy",
+      });
+      User.hasMany(models.CompanyStage, {
+        foreignKey: "updatedBy",
+      });
     }
   }
   User.init({

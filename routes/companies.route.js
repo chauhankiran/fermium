@@ -5,6 +5,7 @@ const router = express.Router();
 const controllers = require("../controllers")
 
 router.get("/", auth, controllers.companiesController.index);
+router.get("/download", auth, controllers.companiesController.download);
 router.get("/add", auth, controllers.companiesController.add);
 router.get("/:id", auth, controllers.companiesController.show);
 router.get("/:id/edit", auth, controllers.companiesController.edit);

@@ -1,13 +1,41 @@
-const { CompanySource, CompanyStage } = require("../models");
+const { CompanySource, CompanyStage, User } = require("../models");
 
 // Get company sources service
 const getCompanySourcesService = () => {
-  return CompanySource.findAll();
+  return CompanySource.findAll({
+    include: [
+      {
+        model: User,
+        as: "creator",
+        attributes: ["id", "firstName", "lastName"]
+      },
+      {
+        model: User,
+        as: "updator",
+        required: false,
+        attributes: ["id", "firstName", "lastName"]
+      }
+    ]
+  });
 }
 
 // Get company stages services
 const getCompanyStagesService = () => {
-  return CompanyStage.findAll();
+  return CompanyStage.findAll({
+    include: [
+      {
+        model: User,
+        as: "creator",
+        attributes: ["id", "firstName", "lastName"]
+      },
+      {
+        model: User,
+        as: "updator",
+        required: false,
+        attributes: ["id", "firstName", "lastName"]
+      }
+    ]
+  });
 }
 
 const adminController = {};
@@ -109,10 +137,12 @@ adminController.fieldsUpdate = async (req, res, next) => {
     if (pickup === "source") {
       value = await CompanySource.findOne({ where: { id }})
       value.name = name;
+      value.updatedBy = req.user.id;
       await value.save();
     } else if (pickup === "stage") {
       value = await CompanyStage.findOne({ where: { id }})
       value.name = name;
+      value.updatedBy = req.user.id;
       await value.save();
     }
 

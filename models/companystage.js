@@ -10,6 +10,16 @@ module.exports = (sequelize, DataTypes) => {
       CompanyStage.hasMany(models.Company, {
         foreignKey: "sourceId",
       });
+
+      // User relation with stage pickup.
+      CompanyStage.belongsTo(models.User, {
+        as: "creator",
+        foreignKey: "createdBy",
+      });
+      CompanyStage.belongsTo(models.User, {
+        as: "updator",
+        foreignKey: "updatedBy",
+      });
     }
   }
   CompanyStage.init({

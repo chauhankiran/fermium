@@ -7,6 +7,17 @@ const formatDateBy = require("../utils/formatDateBy");
 module.exports = (sequelize, DataTypes) => {
   class Company extends Model {
     static associate(models) {
+      // User relation with company.
+      Company.belongsTo(models.User, {
+        as: "creator",
+        foreignKey: "createdBy",
+      })
+      Company.belongsTo(models.User, {
+        as: "updator",
+        foreignKey: "updatedBy",
+      })
+
+      // Pickup fields relation with company.
       Company.belongsTo(models.CompanyStage, {
         as: "companyStage",
         foreignKey: "stageId",

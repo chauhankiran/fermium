@@ -10,6 +10,16 @@ module.exports = (sequelize, DataTypes) => {
       CompanySource.hasMany(models.Company, {
         foreignKey: "sourceId",
       });
+
+      // User relation with source pickup.
+      CompanySource.belongsTo(models.User, {
+        as: "creator",
+        foreignKey: "createdBy",
+      });
+      CompanySource.belongsTo(models.User, {
+        as: "updator",
+        foreignKey: "updatedBy",
+      });
     }
   }
   CompanySource.init({

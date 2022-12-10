@@ -1,4 +1,5 @@
-const { Company, CompanySource, CompanyStage } = require("../models");
+const { Company, CompanySource, CompanyStage, User } = require("../models");
+const downloadCSV = require("../utils/csv")
 
 // Get company service
 const getCompanyService = (id) => {
@@ -49,6 +50,17 @@ companiesController.index = async (req, res, next) => {
           as: "companyStage",
           required: false,
           attributes: ["id", "name"]
+        },
+        {
+          model: User,
+          as: "creator",
+          attributes: ["id", "firstName", "lastName"]
+        },
+        {
+          model: User,
+          as: "updator",
+          required: false,
+          attributes: ["id", "firstName", "lastName"]
         }
       ],
       order: [
@@ -62,6 +74,57 @@ companiesController.index = async (req, res, next) => {
     next(err);
   }
 };
+
+// Download as csv file.
+companiesController.download = async (req, res, next) => {
+  const fields = [
+    { label: "Id", value: "id" },
+    { label: "Name", value: "name" },
+    { label: "website", value: "website" },
+    { label: "Source", value: "companySource.name" },
+    { label: "Stage", value: "companyStage.name" },
+    { label: "Created by", value: (row, field) => row.creator?.firstName + " " + row.creator?.lastName },
+    { label: "Updated by", value: (row, field) => row.updator?.firstName + " " + row.updator?.lastName }
+  ];
+
+  try {
+    const companies = await Company.findAndCountAll({
+      include: [
+        {
+          model: CompanySource,
+          as: "companySource",
+          required: false,
+          attributes: ["id", "name"]
+        },
+        {
+          model: CompanyStage,
+          as: "companyStage",
+          required: false,
+          attributes: ["id", "name"]
+        },
+        {
+          model: User,
+          as: "creator",
+          attributes: ["id", "firstName", "lastName"]
+        },
+        {
+          model: User,
+          as: "updator",
+          required: false,
+          attributes: ["id", "firstName", "lastName"]
+        }
+      ],
+      order: [
+        ['id', 'desc']
+      ]
+    });
+
+    downloadCSV(res, 'users.csv', fields, companies.rows);
+    return
+  } catch (err) {
+    next(err);
+  }
+}
 
 // Add company page.
 companiesController.add = async (req, res, next) => {

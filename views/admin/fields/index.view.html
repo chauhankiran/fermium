@@ -34,11 +34,10 @@
               <th>Id</th>
               <th>Name</th>
               <th>Active</th>
+              <th>Created by</th>
+              <th>Created on</th>
               <th>Created On</th>
               <th>Updated On</th>
-              <!-- TODO: Add createdBy and updatedBy as we'll not going to have the show page for the fields. 
-              In this case, we need to display all the information on this table. 
-              Otherwise, there is no way to see complete information. -->
               <th></th>
             </tr>
           </thead>
@@ -48,6 +47,8 @@
                 <td>{{ value.id }}</td>
                 <td>{{ value.name }}</td>
                 <td>{{ "Yes" if value.active else "No" }}</td>
+                <td>{{ value.creator.firstName }} {{ value.creator.lastName }}</td>
+                <td>{{ value.updator.firstName }} {{ value.updator.lastName }}</td>
                 <td>{{ value.createdAt }}</td>
                 <td>{{ value.updatedAt }}</td>
                 

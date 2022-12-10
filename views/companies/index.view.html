@@ -21,8 +21,10 @@
             <th>Website</th>
             <th>Source</th>
             <th>Stage</th>
-            <th>Created On</th>
-            <th>Updated On</th>
+            <th>Created by</th>
+            <th>Updated by</th>
+            <th>Created on</th>
+            <th>Updated on</th>
             <th></th>
           </tr>
         </thead>
@@ -42,6 +44,8 @@
               <td>{{ company.website }}</td>
               <td>{{ company.companySource.name }}</td>
               <td>{{ company.companyStage.name }}</td>
+              <td>{{ company.creator.firstName }} {{ company.creator.lastName }}</td>
+              <td>{{ company.updator.firstName }} {{ company.updator.lastName }}</td>
               <td>{{ company.createdAt }}</td>
               <td>{{ company.updatedAt }}</td>
               <td class="text-center"><a href="/companies/{{ company.id }}/edit">edit</a> | 
@@ -54,6 +58,18 @@
           {% endfor %}
         </tbody>
       </table>
+
+      <div class="row">
+        <div class="col-6">
+          <a href="/companies/?page=1&size=10" class="btn pagination">Prev</a>
+          <a href="/companies/?page=2&size=10" class="btn pagination">Next</a>
+        </div>
+        <div class="col-6 text-right">
+          <a href="/companies/download" class="btn download">Download</a>
+        </div>
+      </div>
+      
+      
     </div>
   </div>
 </main>

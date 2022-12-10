@@ -295,6 +295,11 @@ label {
 .cancel {
   margin-left: 6px;
 }
+.pagination,
+.download {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
 
 /* ================================== Utilities ================================== */
 /* These should be at the end */
