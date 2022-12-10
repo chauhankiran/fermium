@@ -13,6 +13,10 @@
         </div>
       </div>
 
+      <form action="/companies" method="get">
+        <input type="text" name="search" id="search" class="form-control search" placeholder="Search companies by Name" value="{{ data.search }}">
+      </form>
+
       <table class="table">
         <thead>
           <tr>
@@ -74,13 +78,13 @@
           {% if data.disablePrev %}
             <a href="/companies" class="btn pagination disabled">Prev</a>
           {% else %}
-            <a href="/companies/?page={{ data.page | int - 1 }}&size={{ data.size }}&sort={{ data.sort }}&dir={{ data.dir }}" class="btn pagination">Prev</a>
+            <a href="/companies/?page={{ data.page | int - 1 }}&size={{ data.size }}&sort={{ data.sort }}&dir={{ data.dir }}&search={{ data.search }}" class="btn pagination">Prev</a>
           {% endif %}
 
           {% if data.disableNext %}
             <a href="/companies" class="btn pagination disabled">Next</a>
           {% else %}
-            <a href="/companies/?page={{ data.page | int + 1 }}&size={{ data.size }}&sort={{ data.sort }}&dir={{ data.dir }}" class="btn pagination">Next</a>
+            <a href="/companies/?page={{ data.page | int + 1 }}&size={{ data.size }}&sort={{ data.sort }}&dir={{ data.dir }}&search={{ data.search }}" class="btn pagination">Next</a>
           {% endif %}
         </div>
 

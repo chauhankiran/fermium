@@ -297,12 +297,18 @@ label {
   align-items: center;
   justify-content: flex-end;
 }
+
 .cancel {
   margin-left: 6px;
 }
+
 .pagination,
 .download {
   margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.search {
   margin-bottom: 8px;
 }
 

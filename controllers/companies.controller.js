@@ -1,3 +1,4 @@
+const { Op } = require("sequelize")
 const { Company, CompanySource, CompanyStage, User } = require("../models");
 const downloadCSV = require("../utils/csv")
 
@@ -36,7 +37,7 @@ const companiesController = {};
 
 // Fetch all the companies.
 companiesController.index = async (req, res, next) => {
-  const { page, size, sort, dir } = req.query;
+  const { page, size, sort, dir, search } = req.query;
 
   let onPage = 1;
   if (page && +page > 1) {
@@ -61,8 +62,14 @@ companiesController.index = async (req, res, next) => {
     orderDirection = dir;
   }
 
+  let whereClause = {}
+  if (search) {
+    whereClause["name"] = { [Op.like]: "%" + search + "%" }
+  }
+
   try {
     const companies = await Company.findAndCountAll({
+      where: whereClause,
       include: [
         {
           model: CompanySource,
@@ -115,6 +122,7 @@ companiesController.index = async (req, res, next) => {
       size: perPage,
       sort: orderByColumn,
       dir: orderDirection,
+      search
     };
     res.render("companies/index.view.html", { data });
   } catch (err) {
