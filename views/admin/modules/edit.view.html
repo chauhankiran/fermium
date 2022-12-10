@@ -1,0 +1,32 @@
+{% include "shared/header.shared.html" %}
+{% include "shared/auth-nav.shared.html" %}
+
+
+<main class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>{{ data.title }}</h1>
+
+      <form action="/admin/{{ data.module.name }}" method="post">
+        <!-- Hack: design hack to look little good. -->
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="displayName">Name</label>
+              <input type="text" name="displayName" id="displayName" class="form-control" placeholder="Display module name" value="{{ data.module.displayName }}">
+              <p class="form-support">Write a singular name of the module and we'll do plural whenever needed.</p>
+              <p class="form-support">Make sure you capitalize it correctly.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn">Update</button>
+          <a href="/admin/{{ data.module }}" class="cancel">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+{% include "shared/footer.shared.html" %}

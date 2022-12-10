@@ -1,6 +1,7 @@
 const crypto = require("crypto");
 const passport = require("passport");
-const { User, Field } = require("../models");
+const pluralize = require("pluralize");
+const { User, Field, Module } = require("../models");
 
 const authController = {};
 
@@ -51,7 +52,14 @@ authController.login = async (req, res, next) => {
       // Get the fields.
       const fields = await Field.findAll({ where: { active: 1 } });
       for ( const field of fields ) {
-        req.session[field.module + "_" + field.name] = field.displayName;        
+        req.session[field.module + "_" + field.name] = field.displayName;
+      }
+
+      // Get the modules.
+      const modules = await Module.findAll({ where: { active: 1} });
+      for (const module of modules) {
+        req.session["module_" + module.name] = module.displayName;
+        req.session["module_" + module.name + "_plural"] = pluralize(module.displayName);
       }
 
       req.flash("info", "User logged in successfully");

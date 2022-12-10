@@ -8,6 +8,9 @@ router.get("/", auth, controllers.adminController.index);
 // Fields management.
 // We're messed up with routes and methods name.
 // TODO: Update and re-structure.
+router.get("/:module", auth, controllers.adminController.moduleEdit);
+router.post("/:module", auth, controllers.adminController.moduleUpdate);
+
 router.get("/:module/fields", auth, controllers.adminController.moduleFieldsIndex);
 router.get("/:module/fields/:id/edit", auth, controllers.adminController.moduleFieldsEdit);
 router.post("/:module/fields/:id", auth, controllers.adminController.moduleFieldsUpdate);

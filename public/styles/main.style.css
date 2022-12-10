@@ -312,6 +312,12 @@ label {
   margin-bottom: 8px;
 }
 
+.form-support {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
 /* ================================== Utilities ================================== */
 /* These should be at the end */
 

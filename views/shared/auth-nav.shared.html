@@ -2,7 +2,9 @@
   <div class="nav-left">
     <a href="/dashboard" class="nav-item">{{ globalAppName }}</a>
     <a href="/dashboard" class="nav-item {{ 'active' if '/dashboard' in request.originalUrl }}">Dashboard</a>
-    <a href="/companies" class="nav-item {{ 'active' if '/companies' in request.originalUrl }}">Companies</a>
+    <a href="/companies" class="nav-item {{ 'active' if '/companies' in request.originalUrl }}">
+      {{ request.session.module_companies_plural }}
+    </a>
   </div>
   <div class="nav-right">
     <a href="/admin" class="nav-item {{ 'active' if '/admin' in request.originalUrl }}">Admin</a>

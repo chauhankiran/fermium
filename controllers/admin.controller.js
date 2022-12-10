@@ -1,4 +1,4 @@
-const { CompanySource, CompanyStage, User, Field } = require("../models");
+const { CompanySource, CompanyStage, User, Field, Module } = require("../models");
 
 // Get company sources service
 const getCompanySourcesService = () => {
@@ -234,6 +234,34 @@ adminController.moduleFieldsUpdate = async (req, res, next) => {
     }
 
     res.redirect(`/admin/${module}/fields`);
+    return;
+  } catch (err) {
+    next(err);
+  }
+}
+
+adminController.moduleEdit = async (req, res, next) => {
+  const module = req.params.module;
+
+  try {
+    const details = await Module.findOne({ where: { name: module }});
+    res.render("admin/modules/edit.view.html", { data: { title: module, module: details }})
+    return;
+  } catch (err) {
+    next(err);
+  }
+}
+
+adminController.moduleUpdate = async (req, res, next) => {
+  const module = req.params.module;
+  const displayName = req.body.displayName;
+
+  try {
+    const details = await Module.findOne({ where: { name: module }});
+    details.displayName = displayName
+    await details.save();
+
+    res.redirect(`/admin`);
     return;
   } catch (err) {
     next(err);

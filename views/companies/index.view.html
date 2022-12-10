@@ -6,15 +6,15 @@
     <div class="col-12">
       <div class="row">
         <div class="col-8">
-          <h1>Companies ({{ data.count }})</h1>
+          <h1>{{ request.session.module_companies_plural }} ({{ data.count }})</h1>
         </div>
         <div class="col-4 add-entity">
-          <a href="/companies/add" class="btn">Add new company</a>
+          <a href="/companies/add" class="btn">Add new {{ request.session.module_companies.toLowerCase() }}</a>
         </div>
       </div>
 
       <form action="/companies" method="get">
-        <input type="text" name="search" id="search" class="form-control search" placeholder="Search companies by Name" value="{{ data.search }}">
+        <input type="text" name="search" id="search" class="form-control search" placeholder="Search {{ request.session.module_companies.toLowerCase() }} by Name" value="{{ data.search }}">
       </form>
 
       <table class="table">
