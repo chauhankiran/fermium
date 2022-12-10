@@ -61,9 +61,19 @@
 
       <div class="row">
         <div class="col-6">
-          <a href="/companies/?page=1&size=10" class="btn pagination">Prev</a>
-          <a href="/companies/?page=2&size=10" class="btn pagination">Next</a>
+          {% if data.disablePrev %}
+            <a href="/companies" class="btn pagination disabled">Prev</a>
+          {% else %}
+            <a href="/companies/?page={{ data.page | int - 1 }}&size={{ data.size }}&sort={{ data.sort }}&dir={{ data.dir }}" class="btn pagination">Prev</a>
+          {% endif %}
+
+          {% if data.disableNext %}
+            <a href="/companies" class="btn pagination disabled">Next</a>
+          {% else %}
+            <a href="/companies/?page={{ data.page | int + 1 }}&size={{ data.size }}&sort={{ data.sort }}&dir={{ data.dir }}" class="btn pagination">Next</a>
+          {% endif %}
         </div>
+
         <div class="col-6 text-right">
           <a href="/companies/download" class="btn download">Download</a>
         </div>

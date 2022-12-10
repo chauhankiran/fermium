@@ -36,6 +36,31 @@ const companiesController = {};
 
 // Fetch all the companies.
 companiesController.index = async (req, res, next) => {
+  const { page, size, sort, dir } = req.query;
+
+  let onPage = 1;
+  if (page && +page > 1) {
+    onPage = page;
+  }
+
+  let perPage = 10;
+  if (size & size < 500) {
+    perPage = size;
+  }
+
+  const skip = 0 + (onPage - 1) * perPage;
+
+  let orderByColumn = "id";
+  // List of columns that have support for the sorting.
+  if (sort === "id" || sort === "name" || sort === "createdAt" || sort === "updatedAt") {
+    orderByColumn = sort;
+  }
+
+  let orderDirection = "desc";
+  if ( (dir && dir.toLowerCase() === "desc") || (dir && dir.toLowerCase() === "asc") ) {
+    orderDirection = dir;
+  }
+
   try {
     const companies = await Company.findAndCountAll({
       include: [
@@ -63,12 +88,34 @@ companiesController.index = async (req, res, next) => {
           attributes: ["id", "firstName", "lastName"]
         }
       ],
+      offset: skip,
+      limit: perPage,
       order: [
-        ['id', 'desc']
+        [orderByColumn, orderDirection]
       ]
     });
 
-    const data = { title: "Companies", companies: companies.rows, count: companies.count };
+    // For navigation.
+    let disablePrev = false;
+    if (onPage === 1) {
+      disablePrev = true;
+    }
+    let disableNext = false;
+    if (onPage * perPage >= companies.count) {
+      disableNext = true;
+    }
+
+    const data = { 
+      title: "Companies", 
+      companies: companies.rows, 
+      count: companies.count, 
+      disablePrev, 
+      disableNext, 
+      page: onPage, 
+      size: perPage,
+      sort: orderByColumn,
+      dir: orderDirection,
+    };
     res.render("companies/index.view.html", { data });
   } catch (err) {
     next(err);

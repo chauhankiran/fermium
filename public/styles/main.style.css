@@ -248,6 +248,11 @@ label {
   padding: 0;
 }
 
+.btn.disabled {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
 /* ================================== Alert ================================== */
 .alert {
   display: flex;
