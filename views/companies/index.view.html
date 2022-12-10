@@ -16,15 +16,25 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Website</th>
+            <th>
+                <a href="/companies/?sort=id&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">Id</a>
+            </th>
+            <th>
+              <a href="/companies/?sort=name&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">Name</a>
+            </th>
+            <th>
+              <a href="/companies/?sort=website&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">Website</a>
+            </th>
             <th>Source</th>
             <th>Stage</th>
             <th>Created by</th>
             <th>Updated by</th>
-            <th>Created on</th>
-            <th>Updated on</th>
+            <th>
+              <a href="/companies/?sort=createdAt&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">Created on</a>
+            </th>
+            <th>
+              <a href="/companies/?sort=updatedAt&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">Updated on</a>
+            </th>
             <th></th>
           </tr>
         </thead>
