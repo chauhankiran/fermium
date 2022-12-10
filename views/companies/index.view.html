@@ -21,23 +21,41 @@
         <thead>
           <tr>
             <th>
-                <a href="/companies/?sort=id&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">Id</a>
+                <a href="/companies/?sort=id&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">
+                  {{ request.session.companies_id }}
+                </a>
             </th>
             <th>
-              <a href="/companies/?sort=name&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">Name</a>
+              <a href="/companies/?sort=name&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">
+                {{ request.session.companies_name }}
+              </a>
             </th>
             <th>
-              <a href="/companies/?sort=website&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">Website</a>
-            </th>
-            <th>Source</th>
-            <th>Stage</th>
-            <th>Created by</th>
-            <th>Updated by</th>
-            <th>
-              <a href="/companies/?sort=createdAt&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">Created on</a>
+              <a href="/companies/?sort=website&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">
+                {{ request.session.companies_website }}
+              </a>
             </th>
             <th>
-              <a href="/companies/?sort=updatedAt&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">Updated on</a>
+              {{ request.session.companies_sourceId }}
+            </th>
+            <th>
+              {{ request.session.companies_stageId}}
+            </th>
+            <th>
+              {{ request.session.companies_createdBy}}
+            </th>
+            <th>
+              {{ request.session.companies_updatedBy }}
+            </th>
+            <th>
+              <a href="/companies/?sort=createdAt&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">
+                {{ request.session.companies_createdAt }}
+              </a>
+            </th>
+            <th>
+              <a href="/companies/?sort=updatedAt&dir={{ 'asc' if data.dir === 'desc' else 'desc' }}">
+                {{ request.session.companies_updatedAt }}
+              </a>
             </th>
             <th></th>
           </tr>

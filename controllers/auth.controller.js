@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 const passport = require("passport");
-const { User } = require("../models");
+const { User, Field } = require("../models");
 
 const authController = {};
 
@@ -41,11 +41,17 @@ authController.login = async (req, res, next) => {
       return;
     }
 
-    req.logIn(user, (err) => {
+    req.logIn(user, async (err) => {
       if (err) {
         req.flash("alert", "Problem while login.");
         res.render("auth/login.view.html");
         return;
+      }
+
+      // Get the fields.
+      const fields = await Field.findAll({ where: { active: 1 } });
+      for ( const field of fields ) {
+        req.session[field.module + "_" + field.name] = field.displayName;        
       }
 
       req.flash("info", "User logged in successfully");
