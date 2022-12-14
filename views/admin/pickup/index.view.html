@@ -54,8 +54,8 @@
                 
                 <td class="text-center"><a href="/admin/fields/{{ data.pickup }}/{{ value.id }}/edit">edit</a> | 
                 <!-- TODO: Add confirmation dialog before deleting. -->
-                <form method="post" action="/admin/fields/{{ data.pickup }}/{{ value.id }}/delete" class="inline">
-                  <button class="btn-link">delete</button>
+                <form method="post" id="deletePickupValueForm" action="/admin/fields/{{ data.pickup }}/{{ value.id }}/delete" class="inline">
+                  <button class="btn-link" id="deletePickupValueButton">delete</button>
                 </form>
                </td>
               </tr>

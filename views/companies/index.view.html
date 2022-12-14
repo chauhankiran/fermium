@@ -17,6 +17,13 @@
         <input type="text" name="search" id="search" class="form-control search" placeholder="Search {{ request.session.module_companies.toLowerCase() }} by Name" value="{{ data.search }}">
       </form>
 
+      {% if messages.info %}
+        <div class="alert">
+          <p class="alert-message">{{ messages.info }}</p>
+          <button class="alert-close">x</button>
+        </div>
+      {% endif %}
+
       <table class="table">
         <thead>
           <tr>
@@ -74,8 +81,8 @@
               <td>{{ company.updatedAt }}</td>
               <td class="text-center"><a href="/companies/{{ company.id }}/edit">edit</a> | 
                 <!-- TODO: Add confirmation dialog before deleting. -->
-                <form method="post" action="/companies/{{ company.id }}/delete" class="inline">
-                  <button class="btn-link">delete</button>
+                <form method="post" id="deleteCompanyForm" action="/companies/{{ company.id }}/delete" class="inline">
+                  <button class="btn-link" id="deleteCompanyButton">delete</button>
                 </form>
                </td>
             </tr>
@@ -83,6 +90,7 @@
         </tbody>
       </table>
 
+      <!-- Pagination. -->
       <div class="row">
         <div class="col-6">
           {% if data.disablePrev %}
@@ -102,8 +110,6 @@
           <a href="/companies/download" class="btn download">Download</a>
         </div>
       </div>
-      
-      
     </div>
   </div>
 </main>

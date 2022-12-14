@@ -273,6 +273,7 @@ companiesController.destroy = async (req, res, next) => {
   try {
     const company = await Company.destroy({ where: { id }});
 
+    req.flash("info", `${req.session.module_companies} deleted.`)
     res.redirect("/companies");
     return;
   } catch (err) {
