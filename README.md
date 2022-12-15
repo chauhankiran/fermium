@@ -35,7 +35,7 @@ Running the application locally is quite simple with following steps.
   ```bash
   $ npm start
   ```
-9. If everything goes fine, you should have the running application at http://localhost:3000. Go ahead and create an account by visiting the register page and explore the application! Happy hacking!
+9. If everything goes fine, you should have the running application at http://localhost:3000. Go ahead and login with account created by seeder (or you can create one from Register page) and explore the application! Happy hacking!
 
 ### Tech Stack
 
