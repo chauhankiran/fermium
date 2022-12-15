@@ -41,6 +41,7 @@
     "sqlite3": "5.1.2"
   },
   "devDependencies": {
+    "faker": "5.5.3",
     "nodemon": "2.0.20",
     "sequelize-cli": "6.5.2"
   }
