@@ -27,15 +27,19 @@ Running the application locally is quite simple with following steps.
   ```bash
   $ npx sequelize db:migrate
   ```
-7. Start the application.
+7. Run the seeders to fill the required data with proper setup. (Seeder will also create a demo user for you. Email and password will be consoled log. You need to copy that credentials as it'll not be displayed again).
+  ```bash
+  $ npx sequelize-cli db:seed:all
+  ```
+8. Start the application.
   ```bash
   $ npm start
   ```
-8. If everything goes fine, you should have the running application at http://localhost:3000. Go ahead and create an account by visiting the register page and explore the application! Happy hacking!
+9. If everything goes fine, you should have the running application at http://localhost:3000. Go ahead and create an account by visiting the register page and explore the application! Happy hacking!
 
-### Tech. Stack
+### Tech Stack
 
-The tech. stack for the Fermium is boring. 
+The tech stack for the Fermium is boring. 
 
 On the back-end side, we're using Node with JavaScript and SQLite3 as development database. [Sequelize](https://sequelize.org/) ORM has been used to work with database. On the front-end side, we're NOT using any front-end framework than [Nunjucks](https://mozilla.github.io/nunjucks/) template engine with jQuery and custom-made styles.
 
