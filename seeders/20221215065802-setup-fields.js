@@ -16,6 +16,8 @@ module.exports = {
         displayName: 'Name',
         module: 'companies',
         active: true,
+        row: 1,
+        column: 1,
         createdAt: new Date()
       },
       {
@@ -23,6 +25,8 @@ module.exports = {
         displayName: 'Website',
         module: 'companies',
         active: true,
+        row: 1,
+        column: 2,
         createdAt: new Date()
       },
       {
@@ -44,6 +48,8 @@ module.exports = {
         displayName: 'Source',
         module: 'companies',
         active: true,
+        row: 2,
+        column: 1,
         createdAt: new Date()
       },
       {
@@ -51,6 +57,8 @@ module.exports = {
         displayName: 'Stage',
         module: 'companies',
         active: true,
+        row: 2,
+        column: 2,
         createdAt: new Date()
       },
       {
